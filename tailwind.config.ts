@@ -9,8 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "var(--primary-foreground)",
+        secondary: "var(--secondary-foreground)",
+        accent: "var(--accent)",
+        muted: "var(--muted)",
+      },
+      backgroundColor: {
+        primary: "var(--primary-background)",
+        secondary: "var(--secondary-background)",
+        accent: "var(--accent)",
+        muted: "var(--muted)",
+      },
+      borderColor: {
+        primary: "var(--primary-background)",
+        secondary: "var(--secondary-background)",
+        accent: "var(--accent)",
+        muted: "var(--muted)",
       },
     },
   },

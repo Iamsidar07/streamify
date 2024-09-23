@@ -3,20 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-background: #0a0a0a;
+  --primary-foreground: #ededed;
+  --secondary-background: #1f1f1f;
+  --secondary-foreground: #8c8c8c;
+  --muted: #121212;
+  --accent: #f30e57;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--primary-foreground);
+  background: var(--primary-background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -24,4 +21,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+g&:focus,
+path&:focus {
+  outline: none !important;
+}
+
+.recharts-layer {
+  outline: none !important;
+}
+.recharts-pie * {
+  outline: none !important;
 }
