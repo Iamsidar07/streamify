@@ -36,9 +36,8 @@ export const columns: ColumnDef<Song>[] = [
         </button>
       );
     },
-
     cell: ({ row }) => {
-      const date = row.getValue("date") as Date;
+      const date = new Date(row.getValue("date"));
       return (
         <div className="">
           {date.toLocaleString("en-US", {
@@ -76,5 +75,8 @@ export const columns: ColumnDef<Song>[] = [
   {
     accessorKey: "userId",
     header: "User ID",
+    cell: ({ row }) => {
+      return <div className="w-[90%] truncate">{row.getValue("userId")}</div>;
+    },
   },
 ];

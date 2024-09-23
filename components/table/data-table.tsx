@@ -12,6 +12,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import Button from "../ui/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -40,7 +41,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="border bg-primary border-secondary rounded-lg">
+    <div className="border bg-primary border-secondary rounded-lg relative">
       <div className="flex items-center py-4 px-3">
         <input
           placeholder="Filter by song name..."
@@ -53,13 +54,16 @@ export function DataTable<TData, TValue>({
           className="max-w-sm border border-secondary rounded-md px-4 py-2 bg-transparent outline-none"
         />
       </div>
-      <table className="w-full">
-        <thead className="tableRow header text-left border-b border-b-secondary text-sm">
+      <table className="w-full text-sm">
+        <thead className="text-left border-b border-b-secondary ">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <th key={header.id} className="p-3 text-secondary font-bold">
+                  <th
+                    key={header.id}
+                    className="p-3 text-secondary font-bold whitespace-nowrap"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -78,10 +82,10 @@ export function DataTable<TData, TValue>({
               <tr
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                className="border-b border-b-secondary hover:bg-secondary hover:bg-opacity-50"
+                className="border-b border-b-secondary hover:bg-secondary hover:bg-opacity-50 truncate"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="p-3 text-left">
+                  <td key={cell.id} className="p-3 text-left truncate w-[90%]">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -100,13 +104,13 @@ export function DataTable<TData, TValue>({
         <button
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="bg-muted px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer rounded"
+          className="bg-muted px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer disabled:cursor-none rounded"
         >
           Previous
         </button>
         <button
           onClick={() => table.nextPage()}
-          className="bg-muted px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer rounded"
+          className="bg-muted px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer disabled:cursor-none rounded"
           disabled={!table.getCanNextPage()}
         >
           Next
