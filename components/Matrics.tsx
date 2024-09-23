@@ -15,7 +15,7 @@ const Card = ({ value, up, percentage, label }: CardProps) => {
         <span className="text-2xl sm:text-5xl font-bold">{value}</span>
         <div
           className={`flex items-center ${
-            up ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500 "
+            up ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800 "
           } px-4 py-1 rounded-full text-xs`}
         >
           {up ? (
@@ -32,7 +32,6 @@ const Card = ({ value, up, percentage, label }: CardProps) => {
 };
 
 const Matrics = () => {
-  console.log("matrics rendered");
   return (
     <div className="bg-primary p-4 sm:p-8 border-[1px] border-secondary rounded-lg sm:rounded-2xl">
       <h2 className="text-lg sm:text-3xl font-medium">Key Stats</h2>

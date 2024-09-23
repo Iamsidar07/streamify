@@ -5,7 +5,6 @@ import { columns } from "./table/column";
 import useSongStore from "@/store/useSongStore";
 
 const RecentStreams = () => {
-  console.log("recent streams loaded");
   const getSongs = useSongStore((state) => state.getSongs);
   const songs = useSongStore((state) => state.songs);
   const searchString = useSongStore((state) => state.searchString);
@@ -21,7 +20,6 @@ const RecentStreams = () => {
       setFilterData(songs);
       return;
     }
-    console.log("search string", searchString);
     const result = songs.filter(
       (s) => s.revenueSource === searchString.toLowerCase()
     );

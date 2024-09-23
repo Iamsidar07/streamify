@@ -15,22 +15,12 @@
 body {
   color: var(--primary-foreground);
   background: var(--primary-background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-g&:focus,
-path&:focus {
-  outline: none !important;
-}
-
-.recharts-layer {
-  outline: none !important;
 }
 .recharts-pie * {
   outline: none !important;

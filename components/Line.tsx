@@ -119,7 +119,6 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 };
 
 const Line = () => {
-  console.log("line chart loaded");
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
       <h2 className="text-sm uppercase opacity-50">
