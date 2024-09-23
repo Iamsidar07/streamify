@@ -100,14 +100,14 @@ export default function Pie() {
   };
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
-      <h2 className="text-sm uppercase opacity-50">Total Revenue</h2>
-      <p className="text-lg md:text-4xl font-bold mt-1">
-        $
-        {formatNumber(total, {
-          notation: "standard",
-          compactDisplay: "long",
-        })}
-      </p>
+      {/* <h2 className="text-sm uppercase opacity-50">Total Revenue</h2> */}
+      {/* <p className="text-lg md:text-4xl font-bold mt-1"> */}
+      {/*   $ */}
+      {/*   {formatNumber(total, { */}
+      {/*     notation: "standard", */}
+      {/*     compactDisplay: "long", */}
+      {/*   })} */}
+      {/* </p> */}
       <ResponsiveContainer width="100%" height="90%">
         <PieChart
           width={500}
