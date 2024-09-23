@@ -89,8 +89,7 @@ const keyToLabel: { [key in LineDataType]: string } = {
   active_users: "Active Users",
 };
 
-const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
-  console.log({ active, payload, label });
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
@@ -120,6 +119,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 };
 
 const Line = () => {
+  console.log("line chart loaded");
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
       <h2 className="text-sm uppercase opacity-50">
@@ -137,11 +137,9 @@ const Line = () => {
             bottom: 5,
           }}
         >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis
             dataKey="name"
             strokeDasharray={"3"}
-            // stroke="#8884d8"
             padding={{ left: 30, right: 30 }}
             axisLine={false}
             tickLine={false}
@@ -153,17 +151,7 @@ const Line = () => {
             padding={{ bottom: 10, top: 30 }}
             tickFormatter={(value) => formatNumber(value)}
           />
-          <Tooltip
-            // contentStyle={{
-            //   background: "#1f1f1f",
-            //   outlineWidth: 0,
-            //   borderRadius: 10,
-            //   border: 0,
-            //   paddingBlock: "20px",
-            // }}
-            content={<CustomTooltip />}
-            cursor={false}
-          />
+          <Tooltip content={<CustomTooltip />} cursor={false} />
           <RechartLine
             type="monotone"
             dataKey="total_users"
@@ -171,7 +159,6 @@ const Line = () => {
             activeDot={{ r: 8 }}
           />
           <RechartLine
-            // label={<CustomizedLabel />}
             type="monotone"
             dataKey="active_users"
             stroke="#82cc9d"

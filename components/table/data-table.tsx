@@ -18,10 +18,11 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  console.log("data table loaded");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const table = useReactTable({
@@ -84,7 +85,10 @@ export function DataTable<TData, TValue>({
                 className="border-b border-b-secondary hover:bg-secondary hover:bg-opacity-50 truncate"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="p-3 px-6 text-left truncate w-[90%]">
+                  <td
+                    key={cell.id}
+                    className="p-3 px-6 text-left truncate w-[90%]"
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -118,3 +122,4 @@ export function DataTable<TData, TValue>({
     </div>
   );
 }
+export default DataTable;

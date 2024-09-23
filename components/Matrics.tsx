@@ -1,8 +1,5 @@
 import { formatNumber } from "@/lib/utils";
-import {
-  MoveDownIcon,
-  MoveUpIcon,
-} from "lucide-react";
+import { MoveDownIcon, MoveUpIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 interface CardProps {
@@ -35,6 +32,7 @@ const Card = ({ value, up, percentage, label }: CardProps) => {
 };
 
 const Matrics = () => {
+  console.log("matrics rendered");
   return (
     <div className="bg-primary p-4 sm:p-8 border-[1px] border-secondary rounded-lg sm:rounded-2xl">
       <h2 className="text-lg sm:text-3xl font-medium">Key Stats</h2>

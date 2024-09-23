@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   BarChart,
@@ -39,9 +40,6 @@ export default function Bar() {
       <h2 className="text-sm uppercase opacity-50">
         top 5 most streamed songs
       </h2>
-      {/* <p className="text-xs font-bold mt-1">
-        Top <span className="md:text-4xl">5</span> most streamed songs over 30 days
-      </p> */}
       <ResponsiveContainer width="100%" height="90%">
         <BarChart
           width={500}
@@ -54,17 +52,14 @@ export default function Bar() {
             bottom: 5,
           }}
         >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis
             dataKey="name"
             strokeDasharray={"3"}
-            // stroke="#8884d8"
             padding={{ left: 30, right: 30 }}
             axisLine={false}
             tickLine={false}
           />
           <YAxis
-            // tick={<CustomizedAxisTick />}
             tickLine={false}
             axisLine={false}
             padding={{ bottom: 10, top: 30 }}

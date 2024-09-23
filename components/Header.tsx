@@ -3,10 +3,12 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="border-b border-secondary p-4 flex items-center justify-between">
-      <h1 className="text-2xl font-bold">Streamify</h1>
-      <UserIcon />
-    </div>
+    <header className="border-b border-secondary w-full">
+      <nav className="p-4 flex items-center justify-between">
+        <h2 className="text-2xl font-bold">Streamify</h2>
+        <UserIcon />
+      </nav>
+    </header>
   );
 };
 

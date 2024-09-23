@@ -1,7 +1,7 @@
 "use client";
 import { formatNumber } from "@/lib/utils";
 import useSongStore from "@/store/useSongStore";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   PieChart,
   Pie as PieRechart,
@@ -20,11 +20,14 @@ const data = [
 export default function Pie() {
   const setSearchString = useSongStore((state) => state.setSearchString);
   const searchString = useSongStore((state) => state.searchString);
-  const total = data.reduce((acc, curr) => acc + curr.value, 0);
+
+  const total = useMemo(
+    () => data.reduce((acc, curr) => acc + curr.value, 0),
+    []
+  );
 
   const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
-      console.log(payload);
       return (
         <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
           {payload.map((p) => (

@@ -1,27 +1,16 @@
 "use client";
-import React, { Suspense } from "react";
+import React from "react";
 import Line from "./Line";
 import Bar from "./Bar";
-// import Pie from "./Pie";
-const Pie = React.lazy(() => import("./Pie"));
-function Loading() {
-  console.log("loading...");
-  return <h2>🌀 Pie is Loading...</h2>;
-}
+import Pie from "./Pie";
 const DataVisualization = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
       <div className="lg:col-span-2">
         <Line />
       </div>
-      <div className="">
-        <Bar />
-      </div>
-      <div className="">
-        <Suspense fallback={<Loading />}>
-          <Pie />
-        </Suspense>
-      </div>
+      <Pie />
+      <Bar />
     </div>
   );
 };
