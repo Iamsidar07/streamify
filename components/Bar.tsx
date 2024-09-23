@@ -1,13 +1,11 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import {
   BarChart,
   Bar as BarRechart,
   Rectangle,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { CustomTooltipProps } from "./Line";
@@ -21,7 +19,7 @@ const data = [
   { name: "Sunflower", artist: "Post Malone & Swae Lee", streams: 1947000 },
 ];
 
-const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const song = payload[0].payload;
     return (
@@ -38,7 +36,9 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 export default function Bar() {
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4">
-      <h2 className="text-sm uppercase opacity-50">top 5 most streamed songs</h2>
+      <h2 className="text-sm uppercase opacity-50">
+        top 5 most streamed songs
+      </h2>
       {/* <p className="text-xs font-bold mt-1">
         Top <span className="md:text-4xl">5</span> most streamed songs over 30 days
       </p> */}
@@ -68,7 +68,7 @@ export default function Bar() {
             tickLine={false}
             axisLine={false}
             padding={{ bottom: 10, top: 30 }}
-            tickFormatter={(value, index) =>
+            tickFormatter={(value) =>
               formatNumber(value, { maximumFractionDigits: 0 })
             }
           />

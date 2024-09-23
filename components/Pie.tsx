@@ -1,17 +1,14 @@
 import { formatNumber } from "@/lib/utils";
-import React, { PureComponent, useState } from "react";
+import React, { useState } from "react";
 import {
   PieChart,
   Pie as PieRechart,
   Sector,
   ResponsiveContainer,
   Cell,
-  Tooltip,
   Legend,
-  SectorProps,
 } from "recharts";
 import { PieSectorDataItem } from "recharts/types/polar/Pie";
-import { ActiveShape } from "recharts/types/util/types";
 
 const data = [
   { name: "Subscriptions", value: 5000000, fill: "#82cc9d" },
@@ -44,10 +41,12 @@ const renderActiveShape = (props: PieSectorDataItem) => {
   const ex = mx + (cos >= 0 ? 1 : -1) * 22;
   const ey = my;
   const textAnchor = cos >= 0 ? "start" : "end";
+
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload ? payload[0]?.name : null}
+        {/* @ts-expect-error */}
+        {payload?.name}
       </text>
       <Sector
         cx={cx}
@@ -116,7 +115,7 @@ export default function Pie() {
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
         >
           <Legend
-            formatter={(value, entry, index) => (
+            formatter={(value) => (
               <span className="text-sm font-medium">{value}</span>
             )}
           />
@@ -133,8 +132,7 @@ export default function Pie() {
             dataKey="value"
             onMouseEnter={onPieEnter}
           />
-          {data.map((entry, index) => {
-            console.log(entry);
+          {data.map((_, index) => {
             return (
               <Cell
                 key={`cell-${index}`}

@@ -1,12 +1,3 @@
-import {
-  BadgeCheckIcon,
-  DollarSignIcon,
-  HandCoinsIcon,
-  MusicIcon,
-  User,
-  Users,
-  UsersIcon,
-} from "lucide-react";
 import Image from "next/image";
 import React from "react";
 

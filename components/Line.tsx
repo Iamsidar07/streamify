@@ -7,9 +7,7 @@ import {
   Line as RechartLine,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   TooltipProps,
 } from "recharts";
@@ -96,7 +94,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
-        {payload.map((p, i) => (
+        {payload.map((p) => (
           <div key={p.name} className="flex items-center gap-1">
             <div
               className="w-3 h-3 rounded-full"
@@ -153,7 +151,7 @@ const Line = () => {
             tickLine={false}
             axisLine={false}
             padding={{ bottom: 10, top: 30 }}
-            tickFormatter={(value, index) => formatNumber(value)}
+            tickFormatter={(value) => formatNumber(value)}
           />
           <Tooltip
             // contentStyle={{
