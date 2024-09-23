@@ -12,6 +12,7 @@ export type Song = {
   streamCount: number;
   userId: string;
   date: Date;
+  revenueSource: "advertisements" | "subscriptions" | "streams";
 };
 
 export const columns: ColumnDef<Song>[] = [

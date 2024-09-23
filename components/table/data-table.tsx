@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="border bg-primary border-secondary rounded-lg">
-      <div className="flex items-center py-4 px-2">
+      <div className="flex items-center py-4 px-3">
         <input
           placeholder="Filter by song name..."
           value={
