@@ -1,7 +1,5 @@
 import { formatNumber } from "@/lib/utils";
 import {
-  ArrowDownNarrowWide,
-  MoveDown,
   MoveDownIcon,
   MoveUpIcon,
 } from "lucide-react";
