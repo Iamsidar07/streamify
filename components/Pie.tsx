@@ -38,7 +38,7 @@ export default function Pie() {
                 {`$${formatNumber(p.value)} from ${p.name}`}
               </p>
               <p className="text-secondary text-sm">
-                ${((payload[0].value / total) * 100).toFixed(2)}%
+                {((payload[0].value / total) * 100).toFixed(2)}%
               </p>
             </div>
           ))}
