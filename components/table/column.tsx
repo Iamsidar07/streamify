@@ -29,7 +29,7 @@ export const columns: ColumnDef<Song>[] = [
     header: ({ column }) => {
       return (
         <button
-          className="hover:bg-muted px-4 py-2 disabled:opacity-50 cursor-pointer rounded flex items-center"
+          className="hover:opacity-50 bg-secondary px-4 py-2 disabled:opacity-50 cursor-pointer rounded flex items-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Streamed Date <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -54,7 +54,7 @@ export const columns: ColumnDef<Song>[] = [
     header: ({ column }) => {
       return (
         <button
-          className="hover:bg-muted px-4 py-2 disabled:opacity-50 cursor-pointer rounded flex items-center"
+          className="bg-secondary px-4 py-2 hover:opacity-50 disabled:opacity-50 cursor-pointer rounded flex items-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Stream count

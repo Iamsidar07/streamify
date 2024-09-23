@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 
 export default function Bar() {
   return (
-    <div className="w-full h-[550px] bg-muted rounded-2xl p-4">
+    <div className="w-full h-[550px] bg-muted border border-secondary rounded-2xl p-4">
       <h2 className="text-sm uppercase opacity-50">
         top 5 most streamed songs
       </h2>

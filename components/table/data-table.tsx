@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="border bg-primary border-secondary rounded-lg relative">
+    <div className="border bg-muted border-secondary rounded-lg relative overflow-auto">
       <div className="flex items-center py-4 px-3">
         <input
           placeholder="Filter by song name..."
@@ -61,13 +61,13 @@ export function DataTable<TData, TValue>({
                 return (
                   <th
                     key={header.id}
-                    className="p-3 text-secondary font-bold whitespace-nowrap"
+                    className="p-3 px-6 text-secondary font-bold whitespace-nowrap"
                   >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext(),
+                          header.getContext()
                         )}
                   </th>
                 );
@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
                 className="border-b border-b-secondary hover:bg-secondary hover:bg-opacity-50 truncate"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="p-3 text-left truncate w-[90%]">
+                  <td key={cell.id} className="p-3 px-6 text-left truncate w-[90%]">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -103,13 +103,13 @@ export function DataTable<TData, TValue>({
         <button
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="bg-muted px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer disabled:cursor-none rounded"
+          className="bg-secondary px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer rounded"
         >
           Previous
         </button>
         <button
           onClick={() => table.nextPage()}
-          className="bg-muted px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer disabled:cursor-none rounded"
+          className="bg-secondary px-4 py-2 border border-secondary disabled:opacity-50 cursor-pointer rounded"
           disabled={!table.getCanNextPage()}
         >
           Next

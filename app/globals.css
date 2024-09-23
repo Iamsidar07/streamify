@@ -7,7 +7,8 @@
   --primary-foreground: #ededed;
   --secondary-background: #1f1f1f;
   --secondary-foreground: #8c8c8c;
-  --muted: #121212;
+  --muted: #111111;
+  /* --muted: #121212; */
   --accent: #f30e57;
 }
 
