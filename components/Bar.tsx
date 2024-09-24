@@ -1,40 +1,42 @@
 "use client";
-import React from "react";
+import { formatNumber } from "@/lib/utils";
+import { BarItem } from "@/types";
+import { useCallback, useMemo } from "react";
 import {
   BarChart,
   Bar as BarRechart,
   Rectangle,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
 import { CustomTooltipProps } from "./Line";
-import { formatNumber } from "@/lib/utils";
 
-const data = [
-  { name: "Blinding Lights", artist: "The Weeknd", streams: 2874000 },
-  { name: "Shape of You", artist: "Ed Sheeran", streams: 2518000 },
-  { name: "Dance Monkey", artist: "Tones and I", streams: 2367000 },
-  { name: "Someone You Loved", artist: "Lewis Capaldi", streams: 2102000 },
-  { name: "Sunflower", artist: "Post Malone & Swae Lee", streams: 1947000 },
-];
 
-const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
-  if (active && payload && payload.length) {
-    const song = payload[0].payload;
-    return (
-      <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
-        <p className="font-semibold">{song.name}</p>
-        <p className="text-sm text-secondary">{song.artist}</p>
-        <p className="text-sm font-medium text-secondary">{`${song.streams.toLocaleString()} streams`}</p>
-      </div>
-    );
-  }
-  return null;
-};
+interface Props {
+  data: BarItem[];
+}
 
-export default function Bar() {
+export default function Bar({ data }: Props) {
+  const memoizedData = useMemo(() => data, [data]);
+
+  const CustomTooltip = useCallback(
+    ({ active, payload }: CustomTooltipProps) => {
+      if (active && payload && payload.length) {
+        const song = payload[0].payload;
+        return (
+          <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
+            <p className="font-semibold">{song.name}</p>
+            <p className="text-sm text-secondary">{song.artist}</p>
+            <p className="text-sm font-medium text-secondary">{`${song.streams.toLocaleString()} streams`}</p>
+          </div>
+        );
+      }
+      return null;
+    },
+    []
+  );
   return (
     <div className="w-full h-[550px] bg-muted border border-secondary rounded-2xl p-4">
       <h2 className="text-sm uppercase opacity-50">
@@ -44,7 +46,7 @@ export default function Bar() {
         <BarChart
           width={500}
           height={300}
-          data={data}
+          data={memoizedData}
           margin={{
             top: 5,
             right: 30,
@@ -71,7 +73,6 @@ export default function Bar() {
             cursor={{ fill: "transparent" }}
             content={<CustomTooltip />}
           />
-          {/* <Legend /> */}
           <BarRechart
             type="monotone"
             dataKey="streams"

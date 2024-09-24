@@ -1,56 +1,58 @@
 "use client";
 import { formatNumber } from "@/lib/utils";
 import useSongStore from "@/store/useSongStore";
-import React, { useMemo } from "react";
+import { PieItem } from "@/types";
+import { useCallback, useMemo } from "react";
 import {
+  Legend,
   PieChart,
   Pie as PieRechart,
   ResponsiveContainer,
-  Legend,
   Tooltip,
 } from "recharts";
 import { CustomTooltipProps } from "./Line";
 
-const data = [
-  { name: "Subscriptions", value: 5000000, fill: "#82cc9d" },
-  { name: "Advertisements", value: 3000000, fill: "#8884d8" },
-  { name: "Streams", value: 2000000, fill: "#f30e57" },
-];
+interface Props {
+  data: PieItem[];
+}
 
-export default function Pie() {
+export default function Pie({ data }: Props) {
   const setSearchString = useSongStore((state) => state.setSearchString);
   const searchString = useSongStore((state) => state.searchString);
 
+  const memoizedData = useMemo(() => data, [data]);
   const total = useMemo(
     () => data.reduce((acc, curr) => acc + curr.value, 0),
     []
   );
 
-  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
-          {payload.map((p) => (
-            <div key={p.name} className="space-y-1">
-              <p
-                className="label"
-                style={{
-                  color: p.stroke,
-                }}
-              >
-                {`$${formatNumber(p.value)} from ${p.name}`}
-              </p>
-              <p className="text-secondary text-sm">
-                {((payload[0].value / total) * 100).toFixed(2)}%
-              </p>
-            </div>
-          ))}
-        </div>
-      );
-    }
+  const CustomTooltip = useCallback(
+    ({ active, payload }: CustomTooltipProps) => {
+      if (active && payload?.[0]) {
+        return (
+          <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
+            {payload.map((p) => (
+              <div key={p.name} className="space-y-1">
+                <p
+                  style={{
+                    color: p.stroke,
+                  }}
+                >
+                  {`$${formatNumber(p.value)} from ${p.name}`}
+                </p>
+                <p className="text-secondary text-sm">
+                  {((payload[0].value / total) * 100).toFixed(2)}%
+                </p>
+              </div>
+            ))}
+          </div>
+        );
+      }
 
-    return null;
-  };
+      return null;
+    },
+    []
+  );
 
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
@@ -81,7 +83,7 @@ export default function Pie() {
             strokeLinecap="round"
             strokeLinejoin="round"
             blendStroke={true}
-            data={data}
+            data={memoizedData}
             cx="50%"
             cy="50%"
             innerRadius={80}
@@ -90,7 +92,6 @@ export default function Pie() {
             scale={2}
             fill="#8884d8"
             dataKey="value"
-            className="cursor-pointer"
             onClick={(e) => {
               setSearchString(searchString === e.name ? "" : e.name);
             }}

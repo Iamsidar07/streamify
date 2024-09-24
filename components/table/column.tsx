@@ -1,19 +1,8 @@
 "use client";
 
+import { Song } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Song = {
-  id: string;
-  songName: string;
-  artist: string;
-  streamCount: number;
-  userId: string;
-  date: Date;
-  revenueSource: "advertisements" | "subscriptions" | "streams";
-};
 
 export const columns: ColumnDef<Song>[] = [
   {

@@ -1,15 +1,16 @@
 "use client";
 import { formatNumber } from "@/lib/utils";
-import React from "react";
+import { LineItem } from "@/types";
+import { useCallback, useMemo } from "react";
 
 import {
   LineChart,
   Line as RechartLine,
+  ResponsiveContainer,
+  Tooltip,
+  TooltipProps,
   XAxis,
   YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  TooltipProps,
 } from "recharts";
 import { NameType } from "recharts/types/component/DefaultTooltipContent";
 import { ValueType } from "tailwindcss/types/config";
@@ -21,104 +22,51 @@ export interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
   label?: string;
 }
 
-const data = [
-  {
-    name: "Jan",
-    total_users: 1000,
-    active_users: 500,
-  },
-  {
-    name: "Feb",
-    total_users: 2000,
-    active_users: 100,
-  },
-  {
-    name: "Mar",
-    total_users: 3000,
-    active_users: 2900,
-  },
-  {
-    name: "Apr",
-    total_users: 4000,
-    active_users: 1000,
-  },
-  {
-    name: "May",
-    total_users: 5000,
-    active_users: 1500,
-  },
-  {
-    name: "Jun",
-    total_users: 6000,
-    active_users: 3900,
-  },
-  {
-    name: "Jul",
-    total_users: 7000,
-    active_users: 6500,
-  },
-  {
-    name: "Aug",
-    total_users: 8000,
-    active_users: 7000,
-  },
-  {
-    name: "Sep",
-    total_users: 9000,
-    active_users: 1500,
-  },
-  {
-    name: "Oct",
-    total_users: 10000,
-    active_users: 3000,
-  },
-  {
-    name: "Nov",
-    total_users: 11000,
-    active_users: 5500,
-  },
-  {
-    name: "Dec",
-    total_users: 12000,
-    active_users: 2000,
-  },
-];
+
+interface Props {
+  data: LineItem[];
+}
 
 const keyToLabel: { [key in LineDataType]: string } = {
   total_users: "Total Users",
   active_users: "Active Users",
 };
 
-const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
-        {payload.map((p) => (
-          <div key={p.name} className="flex items-center gap-1">
-            <div
-              className="w-3 h-3 rounded-full"
-              style={{
-                backgroundColor: p.stroke,
-              }}
-            />
-            <p
-              className="label"
-              style={{
-                color: p.stroke,
-              }}
-            >{`${keyToLabel[p.name as keyof typeof keyToLabel]} : ${
-              p.value
-            }`}</p>
+const Line = ({ data }: Props) => {
+  const memoizedData = useMemo(() => data, [data]);
+
+  const CustomTooltip = useCallback(
+    ({ active, payload }: CustomTooltipProps) => {
+      if (active && payload?.[0]) {
+        return (
+          <div className="bg-secondary p-4 rounded-lg bg-opacity-40 border-muted">
+            {payload.map((p) => (
+              <div key={p.name} className="flex items-center gap-1">
+                <div
+                  className="w-3 h-3 rounded-full"
+                  style={{
+                    backgroundColor: p.stroke,
+                  }}
+                />
+                <p
+                  className="label"
+                  style={{
+                    color: p.stroke,
+                  }}
+                >{`${keyToLabel[p.name as keyof typeof keyToLabel]} : ${
+                  p.value
+                }`}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    );
-  }
+        );
+      }
 
-  return null;
-};
+      return null;
+    },
+    []
+  );
 
-const Line = () => {
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
       <h2 className="text-sm uppercase opacity-50">
@@ -128,7 +76,7 @@ const Line = () => {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={memoizedData}
           margin={{
             top: 5,
             right: 30,

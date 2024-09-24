@@ -1,16 +1,16 @@
-"use client";
-import React from "react";
-import Line from "./Line";
+import { BAR_DATA, LINE_DATA, PIE_DATA } from "@/data";
 import Bar from "./Bar";
+import Line from "./Line";
 import Pie from "./Pie";
+
 const DataVisualization = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
       <div className="lg:col-span-2">
-        <Line />
+        <Line data={LINE_DATA} />
       </div>
-      <Pie />
-      <Bar />
+      <Pie data={PIE_DATA} />
+      <Bar data={BAR_DATA} />
     </div>
   );
 };

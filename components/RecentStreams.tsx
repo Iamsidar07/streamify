@@ -1,14 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import DataTable from "./table/data-table";
-import { columns } from "./table/column";
 import useSongStore from "@/store/useSongStore";
+import { useEffect, useState } from "react";
+import { columns } from "./table/column";
+import DataTable from "./table/data-table";
+import { Song } from "@/types";
 
 const RecentStreams = () => {
+  const [filterData, setFilterData] = useState<Song[]>([]);
   const getSongs = useSongStore((state) => state.getSongs);
   const songs = useSongStore((state) => state.songs);
   const searchString = useSongStore((state) => state.searchString);
-  const [filterData, setFilterData] = useState(songs || []);
 
   useEffect(() => {
     getSongs();
