@@ -1,5 +1,14 @@
 # Streamify
 
+## Tech Stack
+- TypeScript
+- Next.js
+- Tailwind CSS
+- Recharts
+- Zustand
+- React Testing Library
+- Deployed on Vercel
+
 ## Thought Process
 
 The goal was to create a functional and visually appealing dashboard that displays data in an interactive way. The following considerations guided the development:
