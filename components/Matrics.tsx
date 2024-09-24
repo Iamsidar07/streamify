@@ -28,7 +28,7 @@ const Matrics = () => {
   return (
     <div className="bg-primary p-4 sm:p-8 border-[1px] border-secondary rounded-lg sm:rounded-2xl">
       <h2 className="text-lg sm:text-3xl font-medium">Key Stats</h2>
-      <div className="flex flex-col md:flex-row flex-wrap gap-6 mt-8">
+      <div className="flex flex-col-reverse md:flex-row flex-wrap gap-6 mt-8">
         {cards.map((card) => (
           <Card key={card.label} {...card} />
         ))}
@@ -63,7 +63,7 @@ const Card = ({
     [value, isCurrency]
   );
   return (
-    <div className="p-4 border-l-4 border-muted rounded-lg space-y-12">
+    <div className="p-4 border-b-4 md:border-b-0 md:border-l-4 border-muted rounded-lg space-y-12">
       <div className="flex items-center gap-6">
         <span className="text-2xl sm:text-5xl font-bold">{formattedValue}</span>
         <div
@@ -85,7 +85,7 @@ const Card = ({
 };
 
 const TopArtist = () => (
-  <div className="p-4 border-l-4 border-muted rounded-lg">
+  <div className="p-4 border-b-4 md:border-b-0 md:border-l-4 border-muted rounded-lg">
     <p className="text-secondary capitalize font-light text-sm">
       <span className="text-lg md:text-3xl font-semibold">#1</span> Artist
     </p>

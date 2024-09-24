@@ -12,7 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import { CustomTooltipProps } from "./Line";
-
+import SaveGraphAsPng from "./SaveGraphAsPng";
 
 interface Props {
   data: BarItem[];
@@ -39,10 +39,13 @@ export default function Bar({ data }: Props) {
   );
   return (
     <div className="w-full h-[550px] bg-muted border border-secondary rounded-2xl p-4">
-      <h2 className="text-sm uppercase opacity-50">
-        top 5 most streamed songs
-      </h2>
-      <ResponsiveContainer width="100%" height="90%">
+      <div className="flex items-center justify-between">
+        <h2 className="text-sm uppercase opacity-50">
+          top 5 most streamed songs
+        </h2>
+        <SaveGraphAsPng id="topStreamedSongs" />
+      </div>
+      <ResponsiveContainer width="100%" height="90%" id="topStreamedSongs">
         <BarChart
           width={500}
           height={300}

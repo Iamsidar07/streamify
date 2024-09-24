@@ -35,7 +35,7 @@ test("should allow sorting by clicking on column headers", () => {
   // Check if the data is sorted in ascending order by stream count
   const firstRowStreamCount = Number(getByText("15").textContent);
   const secondRowStreamCount = Number(getByText("25").textContent);
-  console.log(firstRowStreamCount, secondRowStreamCount);
+
   expect(firstRowStreamCount).toBeLessThanOrEqual(secondRowStreamCount);
 
   // Click again to sort in descending order
@@ -49,8 +49,6 @@ test("should allow sorting by clicking on column headers", () => {
     secondRowStreamCountAfterSort
   );
 });
-
-// ...
 
 test("should filter the table based on the input in the filter box", () => {
   const { getByPlaceholderText, queryByText } = render(

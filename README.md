@@ -1,16 +1,37 @@
+# Streamify
+
+## Thought Process
+
+The goal was to create a functional and visually appealing dashboard that displays data in an interactive way. The following considerations guided the development:
+
+**Data Visualization**: The dashboard utilizes Recharts library for creating interactive charts (line chart, bar chart and pie chart).
+
+**User Interaction**: The dashboard allows users to interact with the charts by clicking on segments of the pie chart, which updates the search string and filters the data table. This interaction enhances the user experience and provides insights into the data.
+
+**Performance**: To optimize performance, the following techniques were employed:
+
+- **Memoization**: useMemo hook is used to memoize data calculations and prevent unnecessary re-renders.
+
+- **useCallback**: The custom tooltip component is memoized using useCallback to avoid unnecessary re-renders.
+
+- **State Management**: Zustand is used to manage the search string state, which is updated based on user interactions with the pie chart.
+
+**Styling**: Tailwind CSS is used for styling, providing a modern and consistent design language.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
-
-First, run the development server:
+Clone the respository:
+```bash
+git clone https://github.com/Iamsidar07/streamify
+```
+Install dependencies:
+```bash
+bun install
+```
+Lastly, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 

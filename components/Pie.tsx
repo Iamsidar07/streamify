@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from "recharts";
 import { CustomTooltipProps } from "./Line";
+import SaveGraphAsPng from "./SaveGraphAsPng";
 
 interface Props {
   data: PieItem[];
@@ -48,7 +49,6 @@ export default function Pie({ data }: Props) {
           </div>
         );
       }
-
       return null;
     },
     []
@@ -56,15 +56,21 @@ export default function Pie({ data }: Props) {
 
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
-      <h2 className="text-sm uppercase opacity-50">Total Revenue</h2>
-      <p className="text-lg md:text-4xl font-bold mt-1">
-        $
-        {formatNumber(total, {
-          notation: "standard",
-          compactDisplay: "long",
-        })}
-      </p>
-      <ResponsiveContainer width="100%" height="90%">
+      <div className="flex items-start justify-between">
+        <div>
+          <h2 className="text-sm uppercase opacity-50">Total Revenue</h2>
+          <p className="text-lg md:text-4xl font-bold mt-1">
+            $
+            {formatNumber(total, {
+              notation: "standard",
+              compactDisplay: "long",
+            })}
+          </p>
+        </div>
+        <SaveGraphAsPng id="revenueDistribution" />
+      </div>
+
+      <ResponsiveContainer width="100%" height="90%" id="revenueDistribution">
         <PieChart
           width={500}
           height={500}

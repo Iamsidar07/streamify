@@ -9,8 +9,8 @@ const DataVisualization = () => {
       <div className="lg:col-span-2">
         <Line data={LINE_DATA} />
       </div>
-      <Pie data={PIE_DATA} />
       <Bar data={BAR_DATA} />
+      <Pie data={PIE_DATA} />
     </div>
   );
 };

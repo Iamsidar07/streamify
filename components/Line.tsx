@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import { NameType } from "recharts/types/component/DefaultTooltipContent";
 import { ValueType } from "tailwindcss/types/config";
+import SaveGraphAsPng from "./SaveGraphAsPng";
 type LineDataType = "total_users" | "active_users";
 
 export interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
@@ -21,7 +22,6 @@ export interface CustomTooltipProps extends TooltipProps<ValueType, NameType> {
   payload?: any[];
   label?: string;
 }
-
 
 interface Props {
   data: LineItem[];
@@ -69,10 +69,13 @@ const Line = ({ data }: Props) => {
 
   return (
     <div className="w-full h-[550px] bg-muted rounded-2xl p-4 border border-secondary">
-      <h2 className="text-sm uppercase opacity-50">
-        user growth over last 12 months
-      </h2>
-      <ResponsiveContainer width="100%" height="90%">
+      <div className="flex items-center justify-between">
+        <h2 className="text-sm uppercase opacity-50">
+          user growth over last 12 months
+        </h2>
+        <SaveGraphAsPng id="userGrowthChart" />
+      </div>
+      <ResponsiveContainer width="100%" height="90%" id="userGrowthChart">
         <LineChart
           width={500}
           height={300}
@@ -112,7 +115,7 @@ const Line = ({ data }: Props) => {
           />
         </LineChart>
       </ResponsiveContainer>
-      <div className="flex justify-center items-center gap-2 mt-4 text-sm text-secondary">
+      <div className="flex justify-center items-center gap-2 mt-1 text-sm text-secondary">
         <div className="flex items-center gap-2">
           <div
             className="w-3 h-3 rounded-full"
