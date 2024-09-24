@@ -60,7 +60,7 @@ const Card = ({
             }
           : {}
       ),
-    [value]
+    [value, isCurrency]
   );
   return (
     <div className="p-4 border-l-4 border-muted rounded-lg space-y-12">

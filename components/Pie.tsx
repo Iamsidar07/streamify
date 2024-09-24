@@ -23,7 +23,7 @@ export default function Pie({ data }: Props) {
   const memoizedData = useMemo(() => data, [data]);
   const total = useMemo(
     () => data.reduce((acc, curr) => acc + curr.value, 0),
-    []
+    [data]
   );
 
   const CustomTooltip = useCallback(
